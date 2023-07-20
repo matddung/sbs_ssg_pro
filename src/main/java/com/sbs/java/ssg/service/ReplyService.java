@@ -11,8 +11,12 @@ public class ReplyService {
 		replyDao = Container.replyDao;
 	}
 
-	public int ReplyWrite(int memberId, int boardId, String name, String body) {
-		Reply reply = new Reply(memberId, boardId, name, body);
+	public int ReplyWrite(int memberId, int articleId, String name, String body) {
+		Reply reply = new Reply(memberId, articleId, name, body);
 		return replyDao.ReplyWrite(reply);
+	}
+	
+	public void delete(int id) {
+		replyDao.delete(id);
 	}
 }

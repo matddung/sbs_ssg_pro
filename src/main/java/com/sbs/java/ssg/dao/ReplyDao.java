@@ -29,4 +29,13 @@ public class ReplyDao {
 
 		return dbConnection.insert(sb.toString());
 	}
+	
+	public int delete(int id) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(String.format("DELETE FROM articleReply "));
+		sb.append(String.format("WHERE id = '%d' ", id));
+
+		return dbConnection.delete(sb.toString());
+	}
 }

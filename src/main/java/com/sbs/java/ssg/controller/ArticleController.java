@@ -19,6 +19,7 @@ public class ArticleController extends Controller {
 	private MemberService memberService;
 	private Session session;
 	private ReplyService replyService;
+	private Article article;
 
 	public ArticleController() {
 		sc = Container.getScanner();
@@ -179,17 +180,19 @@ public class ArticleController extends Controller {
 
 		
 		while(true) {
-			System.out.println("추천(1), 댓글(2) 나가기(3)");
+			System.out.println("추천(1) 댓글(2) 댓글 추천(3) 나가기(4)");
 			
 			System.out.printf("");
 			int feature = sc.nextInt();
 			
 			if(feature == 1) {
-				// 추천 수 증가
+				break;
 			} else if(feature == 2) {
 				doReplyWrite();
 				break;
 			} else if(feature == 3){
+				break;
+			} else if(feature == 4) {
 				break;
 			}
 		}

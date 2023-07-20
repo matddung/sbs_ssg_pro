@@ -32,4 +32,8 @@ public class Reply extends Dto {
 		this.body = (String) row.get("body");
 		this.like = (int) row.get("like");
 	}
+	
+	public void increaseLike() {
+		like++;
+	}
 }
