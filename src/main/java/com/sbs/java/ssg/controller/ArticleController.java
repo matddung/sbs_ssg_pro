@@ -8,6 +8,7 @@ import com.sbs.java.ssg.container.Container;
 import com.sbs.java.ssg.dto.Article;
 import com.sbs.java.ssg.dto.Board;
 import com.sbs.java.ssg.dto.Member;
+import com.sbs.java.ssg.dto.Reply;
 import com.sbs.java.ssg.service.ArticleService;
 import com.sbs.java.ssg.service.MemberService;
 import com.sbs.java.ssg.service.ReplyService;
@@ -99,7 +100,7 @@ public class ArticleController extends Controller {
 		int boardId = session.getCurrentBoard().getId();
 		String name = session.getLoginedMember().name;
 
-		int newId = articleService.Articlewrite(memberId, boardId, name, title, body);
+		int newId = articleService.articleWrite(memberId, boardId, name, title, body);
 
 		System.out.printf("%d번 글이 생성되었습니다.\n", newId);
 	}
@@ -158,8 +159,6 @@ public class ArticleController extends Controller {
 			System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
 			return;
 		}
-
-		//foundArticle.increaseHit();
 		
 		System.out.printf("번호 : %d\n", foundArticle.id);
 		System.out.printf("날짜 : %s\n", foundArticle.regDate);
@@ -170,7 +169,13 @@ public class ArticleController extends Controller {
 		System.out.printf("추천 : %s\n", foundArticle.like);
 		System.out.println("========= 댓글 ==========");
 		
+		List<Reply> forPrintReplies = replyService.getReplies(id);
 		
+		for (int i = forPrintReplies.size() - 1; i >= 0; i--) {
+			Reply reply = forPrintReplies.get(i);
+
+			System.out.printf("작성자 : %s \n 내용 : %6s \n", reply.name, reply.body);
+		}
 		
 		System.out.println("========================");
 
@@ -178,12 +183,11 @@ public class ArticleController extends Controller {
 			System.out.println("추천(1) 댓글(2) 댓글 추천(3) 나가기(4)");
 
 			System.out.printf("");
-			int feature = sc.nextInt();
-			sc.nextLine();
+			String feature = sc.nextLine();
 
-			if (feature == 1) {
+			if (feature.equals("1")) {
 				break;
-			} else if (feature == 2) {
+			} else if (feature.equals("2")) {
 				System.out.printf("내용 : ");
 				String body = sc.nextLine();
 
@@ -195,10 +199,12 @@ public class ArticleController extends Controller {
 
 				System.out.printf("%d번째 댓글이 생성되었습니다.\n", newId);
 				break;
-			} else if (feature == 3) {
+			} else if (feature.equals("3")) {
 				break;
-			} else if (feature == 4) {
+			} else if (feature.equals("4")) {
 				break;
+			} else {
+				continue;
 			}
 		}
 	}

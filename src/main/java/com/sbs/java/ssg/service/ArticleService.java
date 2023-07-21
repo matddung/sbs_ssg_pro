@@ -22,7 +22,7 @@ public class ArticleService {
 		return articleDao.getArticle(id);
 	}
 
-	public int Articlewrite(int memberId, int boardId, String name, String title, String body) {
+	public int articleWrite(int memberId, int boardId, String name, String title, String body) {
 		Article article = new Article(memberId, boardId, name, title, body);
 		return articleDao.Articlewrite(article);
 	}

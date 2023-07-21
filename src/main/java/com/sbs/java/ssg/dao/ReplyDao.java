@@ -41,4 +41,22 @@ public class ReplyDao {
 
 		return dbConnection.delete(sb.toString());
 	}
+
+	public List<Reply> getReplies(int id) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(String.format("SELECT R.* "));
+		sb.append(String.format("FROM `articleReply` AS R "));
+		sb.append(String.format("WHERE id = '%d' ", id));
+		sb.append(String.format("ORDER BY R.id DESC; "));
+
+		List<Reply> replies = new ArrayList<>();
+		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
+
+		for (Map<String, Object> row : rows) {
+			replies.add(new Reply(row));
+		}
+
+		return replies;
+	}
 }

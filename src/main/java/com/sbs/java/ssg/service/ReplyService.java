@@ -22,4 +22,8 @@ public class ReplyService {
 	public void delete(int id) {
 		replyDao.delete(id);
 	}
+	
+	public List<Reply> getReplies(int id) {
+		return replyDao.getReplies(id);
+	}
 }
