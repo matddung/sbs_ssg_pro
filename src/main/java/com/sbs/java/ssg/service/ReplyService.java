@@ -1,7 +1,10 @@
 package com.sbs.java.ssg.service;
 
+import java.util.List;
+
 import com.sbs.java.ssg.container.Container;
 import com.sbs.java.ssg.dao.ReplyDao;
+import com.sbs.java.ssg.dto.Article;
 import com.sbs.java.ssg.dto.Reply;
 
 public class ReplyService {

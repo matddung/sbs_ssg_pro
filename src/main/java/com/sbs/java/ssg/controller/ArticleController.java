@@ -19,13 +19,13 @@ public class ArticleController extends Controller {
 	private MemberService memberService;
 	private Session session;
 	private ReplyService replyService;
-	private Article article;
 
 	public ArticleController() {
 		sc = Container.getScanner();
 		session = Container.getSession();
 		articleService = Container.articleService;
 		memberService = Container.memberService;
+		replyService = Container.replyService;
 	}
 
 	public void doAction(String command, String actionMethodName) {
@@ -53,9 +53,6 @@ public class ArticleController extends Controller {
 		case "currentBoard":
 			doCurrentBoard();
 			break;
-		case "reply":
-			doReplyWrite();
-			break;
 		default:
 			System.out.println("존재하지 않는 명령어 입니다.");
 			break;
@@ -68,8 +65,8 @@ public class ArticleController extends Controller {
 	}
 
 	private void doChangeBoard() {
-		System.out.println("1. 자유 게시판");
-		System.out.println("2. 공지 게시판");
+		System.out.println("1. 공지 게시판");
+		System.out.println("2. 자유 게시판");
 		System.out.println("3. 식품 후기 게시판");
 		System.out.println("4. 운동복 후기 게시판");
 		System.out.println("5. 운동 보조품 게시판");
@@ -162,9 +159,8 @@ public class ArticleController extends Controller {
 			return;
 		}
 
-		foundArticle.increseHit();
-
-		System.out.println("=========================");
+		//foundArticle.increaseHit();
+		
 		System.out.printf("번호 : %d\n", foundArticle.id);
 		System.out.printf("날짜 : %s\n", foundArticle.regDate);
 		System.out.printf("작성자 : %s\n", foundArticle.name);
@@ -172,27 +168,36 @@ public class ArticleController extends Controller {
 		System.out.printf("내용 : %s\n", foundArticle.body);
 		System.out.printf("조회 : %s\n", foundArticle.hit);
 		System.out.printf("추천 : %s\n", foundArticle.like);
-		System.out.println("=========================");
-
-//		System.out.println("========= 댓글 ==========");
-		// 댓글 출력
-//		System.out.println("========================");
-
+		System.out.println("========= 댓글 ==========");
 		
-		while(true) {
+		
+		
+		System.out.println("========================");
+
+		while (true) {
 			System.out.println("추천(1) 댓글(2) 댓글 추천(3) 나가기(4)");
-			
+
 			System.out.printf("");
 			int feature = sc.nextInt();
-			
-			if(feature == 1) {
+			sc.nextLine();
+
+			if (feature == 1) {
 				break;
-			} else if(feature == 2) {
-				doReplyWrite();
+			} else if (feature == 2) {
+				System.out.printf("내용 : ");
+				String body = sc.nextLine();
+
+				int memberId = session.getLoginedMember().getId();
+				int articleId = foundArticle.id;
+				String name = session.getLoginedMember().name;
+
+				int newId = replyService.ReplyWrite(memberId, articleId, name, body);
+
+				System.out.printf("%d번째 댓글이 생성되었습니다.\n", newId);
 				break;
-			} else if(feature == 3){
+			} else if (feature == 3) {
 				break;
-			} else if(feature == 4) {
+			} else if (feature == 4) {
 				break;
 			}
 		}
@@ -256,18 +261,5 @@ public class ArticleController extends Controller {
 
 		articleService.delete(foundArticle.id);
 		System.out.printf("%d번 게시물이 삭제되었습니다.\n", foundArticle.id);
-	}
-	
-	public void doReplyWrite() {
-		System.out.printf("내용 : ");
-		String body = sc.nextLine();
-
-		int memberId = session.getLoginedMember().getId();
-		int articleId = session.getCurrentArticle().getId();
-		String name = session.getLoginedMember().name;
-
-		int newId = replyService.ReplyWrite(memberId, articleId, name, body);
-
-		System.out.printf("%d번째 댓글이 생성되었습니다.\n", newId);
 	}
 }

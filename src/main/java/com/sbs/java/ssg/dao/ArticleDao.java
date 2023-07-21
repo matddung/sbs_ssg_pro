@@ -143,5 +143,4 @@ public class ArticleDao extends Dao {
 
 		return new Board(row);
 	}
-
 }

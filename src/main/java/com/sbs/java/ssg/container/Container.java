@@ -7,6 +7,7 @@ import com.sbs.java.ssg.dao.ArticleDao;
 import com.sbs.java.ssg.dao.MemberDao;
 import com.sbs.java.ssg.dao.ReplyDao;
 import com.sbs.java.ssg.db.DBConnection;
+import com.sbs.java.ssg.dto.Article;
 import com.sbs.java.ssg.service.ArticleService;
 import com.sbs.java.ssg.service.MemberService;
 import com.sbs.java.ssg.service.ReplyService;
@@ -28,6 +29,7 @@ public class Container {
 		articleService = new ArticleService();
 		memberService = new MemberService();
 		replyDao = new ReplyDao();
+		replyService = new ReplyService();
 	}
 
 	public static Scanner getScanner() {
