@@ -46,9 +46,10 @@ public class ReplyDao {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("SELECT R.* "));
-		sb.append(String.format("FROM `articleReply` AS R "));
-		sb.append(String.format("WHERE id = '%d' ", id));
-		sb.append(String.format("ORDER BY R.id DESC; "));
+		sb.append(String.format("FROM articleReply AS R "));
+		sb.append(String.format("INNER JOIN `article` AS A "));
+		sb.append(String.format("ON R.articleId = A.id "));
+		sb.append(String.format("WHERE A.id = %d ", id));
 
 		List<Reply> replies = new ArrayList<>();
 		List<Map<String, Object>> rows = dbConnection.selectRows(sb.toString());
