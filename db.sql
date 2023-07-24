@@ -83,10 +83,4 @@ updateDate = NOW(),
 `code` = 'wear',
 `name` = '운동복 후기';
 
-INSERT INTO `board`
-SET regDate = NOW(),
-updateDate = NOW(),
-`code` = 'Aid',
-`name` = '운동 보조품 후기';
-
 SELECT * FROM board;

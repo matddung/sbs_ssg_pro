@@ -33,12 +33,9 @@ CREATE TABLE `article` (
   `like` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `boardId` (`boardId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `article` */
-
-insert  into `article`(`id`,`regDate`,`updateDate`,`name`,`title`,`body`,`memberId`,`boardId`,`hit`,`like`) values 
-(1,'2023-07-25 04:16:57','2023-07-25 04:30:33','관리자','1','asdf',1,1,2,0);
 
 /*Table structure for table `articleReply` */
 
@@ -71,16 +68,15 @@ CREATE TABLE `board` (
   `name` char(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `board` */
 
 insert  into `board`(`id`,`regDate`,`updateDate`,`code`,`name`) values 
-(1,'2023-07-22 11:26:28','2023-07-22 11:26:28','notice','공지'),
-(2,'2023-07-22 11:26:28','2023-07-22 11:26:28','free','자유'),
-(3,'2023-07-22 11:26:28','2023-07-22 11:26:28','food','식품 후기'),
-(4,'2023-07-22 11:26:28','2023-07-22 11:26:28','wear','운동복 후기'),
-(5,'2023-07-22 11:26:28','2023-07-22 11:26:28','Aid','운동 보조품 후기');
+(1,'2023-07-25 05:18:04','2023-07-25 05:18:04','notice','공지'),
+(2,'2023-07-25 05:18:04','2023-07-25 05:18:04','free','자유'),
+(3,'2023-07-25 05:18:04','2023-07-25 05:18:04','food','식품 후기'),
+(4,'2023-07-25 05:18:04','2023-07-25 05:18:04','wear','운동복 후기');
 
 /*Table structure for table `member` */
 
@@ -100,7 +96,7 @@ CREATE TABLE `member` (
 /*Data for the table `member` */
 
 insert  into `member`(`id`,`regDate`,`updateDate`,`loginId`,`loginPw`,`name`) values 
-(1,'2023-07-22 11:26:28','2023-07-22 11:26:28','admin','admin','관리자');
+(1,'2023-07-25 05:18:04','2023-07-25 05:18:04','admin','admin','관리자');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
