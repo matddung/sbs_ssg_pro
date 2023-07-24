@@ -47,4 +47,11 @@ public class ArticleService {
 		articleDao.delete(id);
 	}
 
+	public void increaseHit(int id, Article article) {
+		articleDao.increaseHit(id, article);
+	}
+	
+	public void increaseLike(int id, Article article) {
+		articleDao.increaseLike(id, article);
+	}
 }

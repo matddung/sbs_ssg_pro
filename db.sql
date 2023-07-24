@@ -62,14 +62,14 @@ CREATE TABLE board (
 INSERT INTO `board`
 SET regDate = NOW(),
 updateDate = NOW(),
-`code` = 'free',
-`name` = '자유';
+`code` = 'notice',
+`name` = '공지';
 
 INSERT INTO `board`
 SET regDate = NOW(),
 updateDate = NOW(),
-`code` = 'notice',
-`name` = '공지';
+`code` = 'free',
+`name` = '자유';
 
 INSERT INTO `board`
 SET regDate = NOW(),

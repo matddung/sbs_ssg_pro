@@ -38,15 +38,4 @@ public class Article extends Dto {
 		this.hit = (int) row.get("hit");
 		this.like = (int) row.get("like");
 	}
-	
-	public void increaseHit() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(String.format("UPDATE article"));
-		sb.append(String.format("SET hit = hit + 1 "));
-	}
-
-	public void increaseLike() {
-		like++;
-	}
 }

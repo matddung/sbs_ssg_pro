@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 import com.sbs.java.ssg.container.Container;
 import com.sbs.java.ssg.dto.Article;
 import com.sbs.java.ssg.dto.Board;
@@ -159,13 +160,15 @@ public class ArticleController extends Controller {
 			System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
 			return;
 		}
+
+		articleService.increaseHit(id, foundArticle);
 		
 		System.out.printf("번호 : %d\n", foundArticle.id);
 		System.out.printf("날짜 : %s\n", foundArticle.regDate);
 		System.out.printf("작성자 : %s\n", foundArticle.name);
 		System.out.printf("제목 : %s\n", foundArticle.title);
 		System.out.printf("내용 : %s\n", foundArticle.body);
-		System.out.printf("조회 : %s\n", foundArticle.hit);
+		System.out.printf("조회 : %s\n", foundArticle.hit + 1);
 		System.out.printf("추천 : %s\n", foundArticle.like);
 		System.out.println("========= 댓글 ==========");
 		
@@ -184,8 +187,10 @@ public class ArticleController extends Controller {
 
 			System.out.printf("");
 			String feature = sc.nextLine();
-
+			
 			if (feature.equals("1")) {
+				articleService.increaseLike(id, foundArticle);
+				System.out.println("게시글이 추천되었습니다.");
 				break;
 			} else if (feature.equals("2")) {
 				System.out.printf("내용 : ");
