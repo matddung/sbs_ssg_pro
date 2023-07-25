@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sbs.exam</groupId>
-	<artifactId>sbs_ssg_pro</artifactId>
+	<artifactId>exam_pro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sbs_ssg_pro</name>
+	<name>exam_pro</name>
 
 	<dependencies>
 		<!-- mysql 라이브러리 -->
@@ -24,5 +24,4 @@
 		</dependency>
 
 	</dependencies>
-
 </project>

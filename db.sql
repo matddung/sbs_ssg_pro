@@ -7,7 +7,7 @@ CREATE TABLE article (
 	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	regDate DATETIME NOT NULL,
 	updateDate DATETIME NOT NULL,
-	`name` CHAR(100) NOT NULL,
+	nickname CHAR(100) NOT NULL,
 	title CHAR(100) NOT NULL,
 	`body` CHAR(100) NOT NULL,
 	memberId INT(1) UNSIGNED NOT NULL,
@@ -17,13 +17,37 @@ CREATE TABLE article (
 	INDEX boardId (`boardId`)
 );
 
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목1',
+`body` = '내용1',
+memberId = 1,
+boardId = 1;
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목2',
+`body` = '내용2',
+memberId = 2,
+boardId = 1;
+
+INSERT INTO article
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '제목3',
+`body` = '내용3',
+memberId = 1,
+boardId = 2;
+
 SELECT * FROM article;
 
 CREATE TABLE articleReply (
 	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	regDate DATETIME NOT NULL,
 	updateDate DATETIME NOT NULL,
-	`name` CHAR(100) NOT NULL,
+	nickname CHAR(100) NOT NULL,
 	`body` CHAR(100) NOT NULL,
 	memberId INT(1) UNSIGNED NOT NULL,
 	articleId INT(1) UNSIGNED NOT NULL,
@@ -39,7 +63,19 @@ CREATE TABLE `member` (
 	updateDate DATETIME NOT NULL,
 	loginId CHAR(100) NOT NULL UNIQUE,
 	loginPw CHAR(100) NOT NULL,
-	`name` CHAR(100) NOT NULL
+	`name` CHAR(100) NOT NULL,
+	nickName CHAR(100) NOT NULL,
+	e_mail CHAR(100) NOT NULL,
+	sex CHAR(100) NOT NULL,
+	birth CHAR(100) NOT NULL,
+	height DOUBLE(5,2) NOT NULL,
+	weight DOUBLE(5,2) NOT NULL,
+	bmi DOUBLE(4,2) NOT NULL,
+	bmi_level CHAR(100) NOT NULL,
+	loss CHAR(100) NOT NULL,
+	months CHAR(100) NOT NULL,
+	category CHAR(100) NOT NULL,
+	category_level CHAR(100) NOT NULL
 );
 
 INSERT INTO `member`
@@ -47,7 +83,38 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
-`name` = '관리자';
+`name` = '관리자',
+nickName = '관리자',
+e_mail = 'pyyk@gym.com',
+sex = '남자',
+birth = '881214',
+height = '170',
+weight = '70',
+bmi = '20',
+bmi_level = '표준',
+loss = '5kg 감량',
+months = '6~12개월',
+category = '필라테스',
+category_level = '필른이';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user1',
+loginPw = 'user1',
+`name` = '김창민',
+nickName = '유저1',
+e_mail = 'user1@gym.com',
+sex = '여자',
+birth = '990415',
+height = '150',
+weight = '55',
+bmi = '20',
+bmi_level = '표준',
+loss = '10kg 감량',
+months = '1~3개월',
+category = '요가',
+category_level = '요른이';
 
 SELECT * FROM `member`;
 

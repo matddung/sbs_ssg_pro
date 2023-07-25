@@ -16,7 +16,7 @@ public class Dto {
 	public Dto() {
 		this(0);
 	}
-	
+
 	public Dto(int id, String regDate) {
 		this(id, regDate, new HashMap<>());
 	}

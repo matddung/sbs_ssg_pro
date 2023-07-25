@@ -22,9 +22,9 @@ public class ArticleService {
 		return articleDao.getArticle(id);
 	}
 
-	public int articleWrite(int memberId, int boardId, String name, String title, String body) {
-		Article article = new Article(memberId, boardId, name, title, body);
-		return articleDao.Articlewrite(article);
+	public int articleWrite(int memberId, int boardId, String nickname, String title, String body) {
+		Article article = new Article(memberId, boardId, nickname, title, body);
+		return articleDao.write(article);
 	}
 
 	public List<Article> getArticles() {
@@ -34,7 +34,8 @@ public class ArticleService {
 	public Board getBoard(int id) {
 		return articleDao.getBoard(id);
 	}
-
+	
+	
 	public Article getForPrintArticle(int id) {
 		return articleDao.getForPrintArticle(id);
 	}
@@ -45,13 +46,5 @@ public class ArticleService {
 
 	public void delete(int id) {
 		articleDao.delete(id);
-	}
-
-	public void increaseHit(int id, Article article) {
-		articleDao.increaseHit(id, article);
-	}
-	
-	public void increaseLike(int id, Article article) {
-		articleDao.increaseLike(id, article);
 	}
 }

@@ -18,20 +18,20 @@ public class ArticleDao extends Dao {
 		dbConnection = Container.getDBConnection();
 	}
 
-	public int Articlewrite(Article article) {
+	public int write(Article article) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("INSERT INTO article "));
 		sb.append(String.format("SET regDate = NOW(), "));
 		sb.append(String.format("updateDate = NOW(), "));
-		sb.append(String.format("memberId = '%d', ", article.memberId));
-		sb.append(String.format("boardId = '%d', ", article.boardId));
-		sb.append(String.format("`name` = '%s', ", article.name));
 		sb.append(String.format("title = '%s', ", article.title));
 		sb.append(String.format("body = '%s', ", article.body));
+		sb.append(String.format("nickname = '%s', ", article.nickname));
+		sb.append(String.format("memberId = '%d', ", article.memberId));
+		sb.append(String.format("boardId = '%d', ", article.boardId));
 		sb.append(String.format("hit = '%d', ", article.hit));
 		sb.append(String.format("`like` = '%d' ", article.like));
-
+		
 		return dbConnection.insert(sb.toString());
 	}
 
@@ -92,7 +92,7 @@ public class ArticleDao extends Dao {
 	public Article getForPrintArticle(int id) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(String.format("SELECT A.*, M.name AS extra__writerName "));
+		sb.append(String.format("SELECT A.*, M.nickname AS extra__writerName "));
 		sb.append(String.format("FROM article AS A "));
 		sb.append(String.format("INNER JOIN `member` as M "));
 		sb.append(String.format("ON A.memberId = M.id "));
@@ -143,26 +143,5 @@ public class ArticleDao extends Dao {
 
 		return new Board(row);
 	}
-	
-	public int increaseHit(int id, Article article) {
-		StringBuilder sb = new StringBuilder();
 
-		sb.append(String.format("UPDATE article "));
-		sb.append(String.format("SET updateDate = NOW(), "));
-		sb.append(String.format("hit = '%d' ", article.hit + 1));
-		sb.append(String.format("WHERE id = '%d' ", id));
-
-		return dbConnection.update(sb.toString());
-	}
-	
-	public int increaseLike(int id, Article article) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(String.format("UPDATE article "));
-		sb.append(String.format("SET updateDate = NOW(), "));
-		sb.append(String.format("`like` = '%d' ", article.like + 1));
-		sb.append(String.format("WHERE id = '%d' ", id));
-
-		return dbConnection.update(sb.toString());
-	}
 }
